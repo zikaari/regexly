@@ -3,7 +3,7 @@
   "description": "WYSIWYG Regex playground for those who JavaScript",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://chipto.io/regexly",
+  "homepage": "https://regexly.chipto.io",
   "dependencies": {
     "@types/codemirror": "^0.0.46",
     "@types/jest": "^20.0.2",
