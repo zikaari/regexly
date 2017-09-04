@@ -1,5 +1,4 @@
 import * as React from 'react'
-import * as autosize from 'autosize'
 import * as CodeMirror from 'codemirror'
 
 import './StringInput.css'
