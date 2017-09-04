@@ -1,0 +1,86 @@
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: transparent;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #636363;
+}
+
+@media (max-width:750px) {
+  .code.var-type {
+    display: none;
+  }
+}
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /*background: black;*/
+}
+
+.wrapper header {
+  padding: 10px;
+}
+
+.wrapper main {
+  overflow: auto;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.wrapper main > div {
+  padding: 30px;
+  max-width: 900px;
+  margin: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper footer {
+  background: #333940;
+  color: #a5a5a5;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+}
+
+.wrapper footer a {
+  color: inherit;
+  margin-left: auto;
+}
+
+.wrapper .buttons button {
+  border: 0;
+  font-size: 15px;
+  background: transparent;
+  color: darkgrey;
+  font-family: 'Segoe UI';
+  cursor: pointer;
+  text-decoration: underline;
+  outline: none;
+}
+
+.input-fields label {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.input-fields label>textarea,
+input {
+  background: #1e2227;
+  color: #e1e1e1;
+  outline-color: #00826a;
+  border: none;
+  font-family: monospace;
+}

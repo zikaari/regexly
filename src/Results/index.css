@@ -1,0 +1,25 @@
+.regex-op-results {
+    display: flex;
+    flex-grow: 1;
+    margin-top: 25px;
+    flex-direction: column;
+}
+
+.regex-op-results > div {
+    margin-bottom: 30px;
+}
+
+span.regex-op {
+    padding: 2px 0;
+    margin: 4px 0;
+    display: inline-block;
+}
+
+.regex-op-res {
+    /*padding-left: 10px;*/
+    font-size: 1.1em;
+}
+
+.regex-op-exec-method {
+    color: #FFF;
+}

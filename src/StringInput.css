@@ -1,0 +1,16 @@
+.str-input textarea {
+    height: 30px;
+    margin-left: 2px;
+    width: 100%;
+    font-size: 18px;
+    padding: 4px;
+    resize: none;
+}
+
+.str-input textarea:focus {
+    outline: 1px solid #00826a;
+}
+
+.re-str-match {
+    background: rgba(0, 255, 255, 0.21)
+}

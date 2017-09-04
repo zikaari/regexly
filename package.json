@@ -1,0 +1,35 @@
+{
+  "name": "regexly",
+  "description": "WYSIWYG Regex playground for those who JavaScript",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://chipto.io/regexly",
+  "dependencies": {
+    "@types/codemirror": "^0.0.46",
+    "@types/jest": "^20.0.2",
+    "@types/node": "^8.0.4",
+    "@types/react": "^16.0.5",
+    "@types/react-dom": "^15.5.4",
+    "@types/react-ga": "^2.1.1",
+    "classnames": "^2.2.5",
+    "codemirror": "^5.28.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-ga": "^2.2.0",
+    "react-share": "git+https://github.com/neeksandhu/react-share.git"
+  },
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "start": "npm run update_version react-scripts-ts start",
+    "build": "npm run update_version react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject",
+    "update_version": "cross-env REACT_APP_VERSION=$npm_package_version"
+  },
+  "devDependencies": {
+    "cross-env": "^5.0.5",
+    "gh-pages": "^1.0.0",
+    "react-scripts-ts": "^2.6.0"
+  }
+}
