@@ -1,7 +1,8 @@
 # Regexly
-WYSIWYG Regex playground for those who JavaScript
 
 #### *TL;DR*
+> A WYSIWYG Regex Playground for JavaScript Developers — [*JavaScript Daily*](https://twitter.com/JavaScriptDaily/status/919892692657680384)
+
 > Anything that makes writing regexes for my JavaScript stuff easier is 😎 — [*Kent C. Dodds*](https://twitter.com/kentcdodds/status/907256355978756096)
 
 > Pretty sweet little open source React app to help you learn Regexes — [*WesBos*](https://twitter.com/wesbos/status/907338038187106304)
