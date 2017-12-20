@@ -11,6 +11,10 @@ ___
 
 > Pretty sweet little open source React app to help you learn Regexes — [*WesBos*](https://twitter.com/wesbos/status/907338038187106304)
 
+___
+
+> If you write #JavaScript and Regular Expressions, then Regexly is great! — [*Elijah Manor*](https://twitter.com/elijahmanor/status/943256724403781633)
+
 # ⚠️Caution
 
 This repository(v0.1.1) does not reflect the live version(v0.1.2) at the moment. Significant changes are coming in v0.2.0 and I'm in the process of cleaning/organizing the project setup since now it has docker, mysql, AWS services involved. And this is my first time working with docker. So in case you are planning to contribute, it's recommended to wait until changes are in sync.
