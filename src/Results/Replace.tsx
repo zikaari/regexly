@@ -1,5 +1,4 @@
-import * as React from "react"
-import { tokenizeFnCall, objFormat } from '../CodeFormatter'
+import * as React from 'react'
 
 interface IReplaceProps {
     regex: RegExp
@@ -14,17 +13,17 @@ class Replace extends React.Component<IReplaceProps, IReplaceState> {
     constructor(props) {
         super(props)
         this.state = {
-            replacer: ''
+            replacer: '',
         }
     }
     public render(): JSX.Element {
         const { regex, str } = this.props
-        let replaceRes = null, err = null
+        let replaceRes = null
+        let err = null
         if (regex instanceof RegExp && typeof str === 'string') {
             try {
                 replaceRes = str.replace(regex, this.state.replacer)
             } catch (error) {
-                console.log(error)
                 err = error
             }
         }
@@ -37,7 +36,7 @@ class Replace extends React.Component<IReplaceProps, IReplaceState> {
                         <span className='code  protofn-opening-bracket'>(</span>
                         <span className='code  protofn-arg'>regex</span>
                         <span className='code  protofn-arg-comma'>, </span>
-                        <input type="text" onChange={this.handleInputOnChange} />
+                        <input type='text' onChange={this.handleInputOnChange} />
                         <span className='code  protofn-closing-bracket'>)</span>
                     </span>
                 </span>
@@ -51,7 +50,7 @@ class Replace extends React.Component<IReplaceProps, IReplaceState> {
     handleInputOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { currentTarget } = e
         this.setState({
-            replacer: currentTarget.value
+            replacer: currentTarget.value,
         })
     }
 }

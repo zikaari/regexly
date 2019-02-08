@@ -23,129 +23,132 @@
  */
 
 class ExpressionHighlighter {
-	private prefix: string;
-	private selectedMarks: any[];
-	private activeMarks: any[];
-	private offset: number;
-	private cm: CodeMirror.Editor;
 
-	static readonly GROUP_CLASS_BY_TYPE = {
-		set: "exp-group-set",
-		setnot: "exp-group-set",
-		group: "exp-group-%depth%",
-		lookaround: "exp-group-%depth%"
-	}
+    static readonly GROUP_CLASS_BY_TYPE = {
+        set: 'exp-group-set',
+        setnot: 'exp-group-set',
+        group: 'exp-group-%depth%',
+        lookaround: 'exp-group-%depth%',
+    }
+    private prefix: string
+    private selectedMarks: any[]
+    private activeMarks: any[]
+    private offset: number
+    private cm: CodeMirror.Editor
 
-	constructor(cm: CodeMirror.Editor, offset?: number) {
-		this.cm = cm;
-		this.offset = offset || 0;
-		this.activeMarks = [];
-		this.selectedMarks = [];
-		this.prefix = "exp-";
-	}
+    constructor(cm: CodeMirror.Editor, offset?: number) {
+        this.cm = cm
+        this.offset = offset || 0
+        this.activeMarks = []
+        this.selectedMarks = []
+        this.prefix = 'exp-'
+    }
 
-	public draw = function (token) {
-		var cm = this.cm, pre = this.prefix;
+    public draw = function(token) {
+        const cm = this.cm
+        const pre = this.prefix
 
-		this.clear();
-		cm.operation(() => {
+        this.clear()
+        cm.operation(() => {
 
-			var groupClasses = ExpressionHighlighter.GROUP_CLASS_BY_TYPE;
-			var doc = cm.getDoc(), endToken, marks = this.activeMarks;
+            const groupClasses = ExpressionHighlighter.GROUP_CLASS_BY_TYPE
+            const doc = cm.getDoc()
+            const marks = this.activeMarks
+            let endToken
 
-			while (token) {
-				if (token.clear) {
-					token = token.next;
-					continue;
-				}
-				token = this._calcTokenPos(doc, token);
+            while (token) {
+                if (token.clear) {
+                    token = token.next
+                    continue
+                }
+                token = this._calcTokenPos(doc, token)
 
-				var className = pre + (token.clss || token.type);
-				if (token.err) {
-					className += " " + pre + "error";
-				}
+                let className = pre + (token.clss || token.type)
+                if (token.err) {
+                    className += ' ' + pre + 'error'
+                }
 
-				if (className) {
-					marks.push(doc.markText(token.startPos, token.endPos, { className: className }));
-				}
+                if (className) {
+                    marks.push(doc.markText(token.startPos, token.endPos, { className }))
+                }
 
-				if (token.close) {
-					endToken = this._calcTokenPos(doc, token.close);
-					className = groupClasses[token.clss || token.type];
-					if (className) {
-						className = className.replace("%depth%", token.depth);
-						marks.push(doc.markText(token.startPos, endToken.endPos, { className: className }));
-					}
-				}
-				token = token.next;
-			}
-		});
+                if (token.close) {
+                    endToken = this._calcTokenPos(doc, token.close)
+                    className = groupClasses[token.clss || token.type]
+                    if (className) {
+                        className = className.replace('%depth%', token.depth)
+                        marks.push(doc.markText(token.startPos, endToken.endPos, { className }))
+                    }
+                }
+                token = token.next
+            }
+        })
 
-	};
+    }
 
-	private clear = function () {
-		this.cm.operation(() => {
-			var marks = this.activeMarks;
-			for (var i = 0, l = marks.length; i < l; i++) {
-				marks[i].clear();
-			}
-			marks.length = 0;
-		});
-	};
+    private clear = function() {
+        this.cm.operation(() => {
+            const marks = this.activeMarks
+            for (let i = 0, l = marks.length; i < l; i++) {
+                marks[i].clear()
+            }
+            marks.length = 0
+        })
+    }
 
-	private selectToken = function (token) {
-		if (token == this.selectedToken) {
-			return;
-		}
-		if (token && token.set && token.set.indexOf(this.selectedToken) != -1) {
-			return;
-		}
-		while (this.selectedMarks.length) {
-			this.selectedMarks.pop().clear();
-		}
-		this.selectedToken = token;
-		if (!token) {
-			return;
-		}
+    private selectToken = function(token) {
+        if (token === this.selectedToken) {
+            return
+        }
+        if (token && token.set && token.set.indexOf(this.selectedToken) !== -1) {
+            return
+        }
+        while (this.selectedMarks.length) {
+            this.selectedMarks.pop().clear()
+        }
+        this.selectedToken = token
+        if (!token) {
+            return
+        }
 
-		if (token.open) {
-			this._drawSelect(token.open);
-		}
-		else {
-			this._drawSelect(token);
-		}
-		if (token.related) {
-			for (var i = 0; i < token.related.length; i++) {
-				this._drawSelect(token.related[i], "exp-related");
-			}
-		}
-	};
+        if (token.open) {
+            this._drawSelect(token.open)
+        }
+        else {
+            this._drawSelect(token)
+        }
+        if (token.related) {
+            for (let i = 0; i < token.related.length; i++) {
+                this._drawSelect(token.related[i], 'exp-related')
+            }
+        }
+    }
 
-	private _drawSelect = function (token, style) {
-		var endToken = token.close || token;
-		if (token.set) {
-			endToken = token.set[token.set.length - 1];
-			token = token.set[0];
-		}
-		style = style || "exp-selected";
-		var doc = this.cm.getDoc();
-		this._calcTokenPos(doc, endToken)
-		this._calcTokenPos(doc, token);
-		this.selectedMarks.push(doc.markText(token.startPos, endToken.endPos, {
-			className: style,
-			startStyle: style + "-left",
-			endStyle: style + "-right"
-		}));
-	};
+    private _drawSelect = function(token, style) {
+        let endToken = token.close || token
+        if (token.set) {
+            endToken = token.set[token.set.length - 1]
+            token = token.set[0]
+        }
+        style = style || 'exp-selected'
+        const doc = this.cm.getDoc()
+        this._calcTokenPos(doc, endToken)
+        this._calcTokenPos(doc, token)
+        this.selectedMarks.push(doc.markText(token.startPos, endToken.endPos, {
+            className: style,
+            startStyle: style + '-left',
+            endStyle: style + '-right',
+        }))
+    }
 
-	private _calcTokenPos = function (doc, token) {
-		if (token.startPos || token == null) {
-			return token;
-		}
-		token.startPos = doc.posFromIndex(token.i + this.offset);
-		token.endPos = doc.posFromIndex(token.end + this.offset);
-		return token;
-	};
+    private _calcTokenPos = function(doc, token) {
+        if (token.startPos || token == null) {
+            return token
+        }
+        token.startPos = doc.posFromIndex(token.i + this.offset)
+        token.endPos = doc.posFromIndex(token.end + this.offset)
+        return token
+    }
 }
 
 export { ExpressionHighlighter }

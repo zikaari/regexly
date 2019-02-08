@@ -1,5 +1,5 @@
-import * as React from 'react'
 import * as classNames from 'classnames'
+import * as React from 'react'
 import './CodeFormatter.css'
 
 export const tokenizeFnCall = (code: string, jsx?: JSX.Element) => {
@@ -8,11 +8,11 @@ export const tokenizeFnCall = (code: string, jsx?: JSX.Element) => {
         const [_, obj, fn, openingBracket, arg, closingBracket] = match
         return (
             <span className='code  protofn-call'>
-                <span className='code  obj'>{obj}</span>
-                <span className='code  protofn'>{fn}</span>
-                <span className='code  protofn-opening-bracket'>{openingBracket}</span>
-                <span className='code  protofn-arg'>{arg}</span>
-                <span className='code  protofn-closing-bracket'>{closingBracket}</span>
+                <span className='code obj'>{obj}</span>
+                <span className='code protofn'>{fn}</span>
+                <span className='code protofn-opening-bracket'>{openingBracket}</span>
+                <span className='code protofn-arg'>{arg}</span>
+                <span className='code protofn-closing-bracket'>{closingBracket}</span>
             </span>
         )
     }
@@ -24,10 +24,10 @@ export const tokenizeDeclaration = (code: string) => {
     if (match) {
         const [_, type, identifier, assignmentOperator] = match
         return (
-            <span className='code  var-declartion'>
-                <span className='code  var-type'>{type}</span>
-                <span className='code  var-identifier'>{identifier}</span>
-                <span className='code  assignment-operator'>{assignmentOperator}</span>
+            <span className='code var-declartion'>
+                <span className='code var-type'>{type}</span>
+                <span className='code var-identifier'>{identifier}</span>
+                <span className='code assignment-operator'>{assignmentOperator}</span>
             </span>
         )
     }
@@ -35,10 +35,11 @@ export const tokenizeDeclaration = (code: string) => {
 }
 
 export const objFormat = (obj: any) => {
-    let isNodeArray = (Array.isArray(obj))
-    let nodes = []
-    for (let key in obj) {
-        let value = obj[key]
+    const isNodeArray = (Array.isArray(obj))
+    const nodes = []
+    // tslint:disable-next-line:forin
+    for (const key in obj) {
+        const value = obj[key]
         nodes.push(
             <li className='code key-value' key={key + value}>
                 <span>{key}</span>
@@ -48,7 +49,7 @@ export const objFormat = (obj: any) => {
                         (typeof value === 'undefined') ? 'undefined' :
                             (typeof value === 'object') ? objFormat(value) : value}
                 </span>
-            </li>
+            </li>,
         )
     }
     return (
@@ -56,4 +57,4 @@ export const objFormat = (obj: any) => {
             {nodes}
         </ul>
     )
-} 
+}

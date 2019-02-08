@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from 'react'
 import { tokenizeFnCall } from '../CodeFormatter'
 
 interface ITestProps {
@@ -6,12 +6,11 @@ interface ITestProps {
     str: string
 }
 
-interface ITestState { }
-
-class Test extends React.Component<ITestProps, ITestState> {
+class Test extends React.Component<ITestProps> {
     public render(): JSX.Element {
         const { regex, str } = this.props
-        let testRes = null, err = null
+        let testRes = null
+        let err = null
         if (regex instanceof RegExp && typeof str === 'string') {
             try {
                 testRes = regex.test(str)

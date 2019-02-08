@@ -1,10 +1,10 @@
 import * as React from 'react'
 import './App.css'
 
-import RegexInput from './RegexInput'
-import StringInput from './StringInput'
 import { tokenizeDeclaration } from './CodeFormatter'
+import RegexInput from './RegexInput'
 import Results from './Results'
+import StringInput from './StringInput'
 
 interface IAppState {
   regex: RegExp
@@ -19,7 +19,7 @@ class App extends React.Component<{}, IAppState> {
     }, 1000)
     this.state = {
       regex,
-      str
+      str,
     }
   }
   render() {
@@ -38,10 +38,50 @@ class App extends React.Component<{}, IAppState> {
         </main>
         <footer>
           <span>MIT License | v{process.env.REACT_APP_VERSION}</span>
-          <a href="https://github.com/chipto/regexly" target='_blank'>Github Repository</a>
+          <a href='https://github.com/chipto/regexly' target='_blank'>Github Repository</a>
         </footer>
       </div>
-    );
+    )
+  }
+
+  handleRegexInputOnChange = (text: string) => {
+    this.setState({
+      regex: this.constructRegExp(text),
+    })
+  }
+
+  constructRegExp(rawStr: string): RegExp | null {
+    let regex = null
+    if (typeof rawStr === 'string') {
+      const regexFirstSlashIndex = rawStr.indexOf('/')
+      const regexLastSlashIndex = rawStr.lastIndexOf('/')
+      let flags = ''
+      if ((rawStr.length - regexLastSlashIndex) > 6 || regexFirstSlashIndex !== 0) {
+        return null
+      }
+      flags = rawStr.substr(regexLastSlashIndex + 1)
+      if (/[^gmiuy]/.test(flags)) {
+        return null
+      }
+      const regexstr = rawStr.substr(regexFirstSlashIndex + 1, regexLastSlashIndex - 1)
+      try {
+        regex = RegExp(regexstr, flags)
+      } catch (error) {
+
+      }
+      if (regex !== null && regex.toString() !== rawStr) {
+        return null
+      }
+    }
+    return regex
+  }
+
+  handleStringInputOnChange = (value: string) => {
+    if (typeof value === 'string') {
+      this.setState({
+        str: value,
+      })
+    }
   }
 
   private parseURI = () => {
@@ -52,7 +92,7 @@ class App extends React.Component<{}, IAppState> {
       match.forEach(pair => {
         const [key, value] = pair.split('=')
         if (key === 'regexp') {
-          let rawStr = decodeURI(value)
+          const rawStr = decodeURI(value)
           regex = this.constructRegExp(rawStr)
         }
         if (key === 'string') {
@@ -72,46 +112,6 @@ class App extends React.Component<{}, IAppState> {
     }
     history.replaceState({}, '', `/?regexp=${encodeURI(this.state.regex.toString())}&string=${encodeURI(this.state.str)}`)
   }
-
-  handleRegexInputOnChange = (text: string) => {
-    this.setState({
-      regex: this.constructRegExp(text)
-    })
-  }
-
-  constructRegExp(rawStr: string): RegExp | null {
-    let regex = null
-    if (typeof rawStr === 'string') {
-      const regexFirstSlashIndex = rawStr.indexOf('/')
-      const regexLastSlashIndex = rawStr.lastIndexOf('/')
-      let flags = ''
-      if ((rawStr.length - regexLastSlashIndex) > 6 || regexFirstSlashIndex !== 0) {
-        return null
-      }
-      flags = rawStr.substr(regexLastSlashIndex + 1)
-      if (/[^gmiuy]/.test(flags)) {
-        return null
-      }
-      let regexstr = rawStr.substr(regexFirstSlashIndex + 1, regexLastSlashIndex - 1)
-      try {
-        regex = RegExp(regexstr, flags)
-      } catch (error) {
-
-      }
-      if (regex !== null && regex.toString() !== rawStr) {
-        return null
-      }
-    }
-    return regex
-  }
-
-  handleStringInputOnChange = (value: string) => {
-    if (typeof value === 'string') {
-      this.setState({
-        str: value
-      })
-    }
-  }
 }
 
-export default App;
+export default App

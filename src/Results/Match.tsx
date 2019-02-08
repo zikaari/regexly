@@ -1,18 +1,17 @@
-import * as React from "react"
-import { tokenizeFnCall, objFormat } from '../CodeFormatter'
-import * as classNames from "classnames"
+import * as classNames from 'classnames'
+import * as React from 'react'
+import { objFormat, tokenizeFnCall } from '../CodeFormatter'
 
 interface IMatchProps {
     regex: RegExp
     str: string
 }
 
-interface IMatchState { }
-
-class Match extends React.Component<IMatchProps, IMatchState> {
+class Match extends React.Component<IMatchProps> {
     public render(): JSX.Element {
         const { regex, str } = this.props
-        let matchRes = null, err = null
+        let matchRes = null
+        let err = null
         if (regex instanceof RegExp && typeof str === 'string') {
             try {
                 matchRes = str.match(regex)

@@ -1,20 +1,18 @@
-import Search from './Search';
-import * as React from 'react';
-import './index.css';
-
-import Test from './Test'
-import Match from './Match'
+import * as React from 'react'
 import Exec from './Exec'
+import Match from './Match'
+import Search from './Search'
+import Test from './Test'
 // import Replace from './Replace'
+
+import './index.css'
 
 interface IResultsProps {
     regex: RegExp
     str: string
 }
 
-interface IResultsState { }
-
-class Results extends React.Component<IResultsProps, IResultsState> {
+class Results extends React.Component<IResultsProps> {
     public render(): JSX.Element {
         const { regex, str } = this.props
         return (

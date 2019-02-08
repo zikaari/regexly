@@ -1,18 +1,16 @@
-import * as React from "react"
-import { tokenizeFnCall, objFormat } from '../CodeFormatter'
-import * as classNames from "classnames"
+import * as React from 'react'
+import { objFormat, tokenizeFnCall } from '../CodeFormatter'
 
 interface ISearchProps {
     regex: RegExp
     str: string
 }
 
-interface ISearchState { }
-
-class Search extends React.Component<ISearchProps, ISearchState> {
+class Search extends React.Component<ISearchProps> {
     public render(): JSX.Element {
         const { regex, str } = this.props
-        let searchRes = null, err = null
+        let searchRes = null
+        let err = null
         if (regex instanceof RegExp && typeof str === 'string') {
             try {
                 searchRes = str.search(regex)

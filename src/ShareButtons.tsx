@@ -1,5 +1,5 @@
-import { ShareButtons as _ShareButtons, ShareCounts, generateShareIcon } from 'react-share'
 import React from 'react'
+import { generateShareIcon, ShareButtons as _ShareButtons, ShareCounts } from 'react-share'
 
 class ShareButtons extends React.Component<any, any> {
     render() {
@@ -17,6 +17,6 @@ class ShareButtons extends React.Component<any, any> {
     }
 
     handle(): number {
-        return 12;
+        return 12
     }
 }
