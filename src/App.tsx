@@ -31,8 +31,14 @@ class App extends React.Component<{}, IAppState> {
         <main>
           <div>
             <div className='input-fields'>
-              <label className='regex-input'>{tokenizeDeclaration('const regexp = ')}<RegexInput defaultValue={regex && regex.toString()} onChange={this.handleRegexInputOnChange} /></label>
-              <label className='str-input'>{tokenizeDeclaration('const string = ')}<StringInput regex={regex} defaultValue={str} onChange={this.handleStringInputOnChange} /></label>
+              <label className='regex-input'>
+                {tokenizeDeclaration('const regexp = ')}
+                <RegexInput defaultValue={regex && regex.toString()} onChange={this.handleRegexInputOnChange} />
+              </label>
+              <label className='str-input'>
+                {tokenizeDeclaration('const string = ')}
+                <StringInput regex={regex} defaultValue={str} onChange={this.handleStringInputOnChange} />
+              </label>
             </div>
             <div className='buttons'><button onClick={this.generatePermalink}>Generate permalink</button></div>
             <Results regex={regex} str={str} />
