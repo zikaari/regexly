@@ -8,13 +8,13 @@
     "@types/codemirror": "^0.0.46",
     "@types/jest": "^20.0.2",
     "@types/node": "^8.0.4",
-    "@types/react": "^16.0.5",
-    "@types/react-dom": "^15.5.4",
+    "@types/react": "^16.8.2",
+    "@types/react-dom": "^16.8.0",
     "@types/react-ga": "^2.1.1",
     "classnames": "^2.2.5",
     "codemirror": "^5.28.0",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
     "react-ga": "^2.2.0",
     "react-share": "git+https://github.com/neeksandhu/react-share.git"
   },
@@ -30,6 +30,8 @@
   "devDependencies": {
     "cross-env": "^5.0.5",
     "gh-pages": "^1.0.0",
-    "react-scripts-ts": "^2.6.0"
+    "react-scripts-ts": "^2.6.0",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.3"
   }
 }
