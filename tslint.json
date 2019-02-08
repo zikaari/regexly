@@ -16,5 +16,10 @@
         "member-access": false,
         "jsx-no-multiline-js": false,
         "object-literal-sort-keys": false
+    },
+    "linterOptions": {
+        "exclude": [
+            "*.json"
+        ]
     }
 }
