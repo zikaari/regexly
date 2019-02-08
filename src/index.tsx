@@ -2,8 +2,10 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import * as ReactGA from 'react-ga'
 import App from './App'
-import './index.css'
 import registerServiceWorker from './registerServiceWorker'
+
+import {version} from '../package.json'
+import './index.css'
 
 ReactDOM.render(
   <App />,
@@ -14,7 +16,7 @@ if (process.env.NODE_ENV === 'production' && process.env.REACT_APP_GA_ID !== '')
   ReactGA.initialize(process.env.REACT_APP_GA_ID, {gaOptions: {
     appId: 'io.chipto.regexly',
     appName: 'Regexly',
-    appVersion: process.env.REACT_APP_VERSION || '0.0.0',
+    appVersion: version || '0.0.0',
   } as any})
   ReactGA.pageview(window.location.pathname)
 }

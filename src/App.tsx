@@ -6,6 +6,8 @@ import RegexInput from './RegexInput'
 import Results from './Results'
 import StringInput from './StringInput'
 
+import { version } from '../package.json'
+
 interface IAppState {
   regex: RegExp
   str: string
@@ -37,7 +39,7 @@ class App extends React.Component<{}, IAppState> {
           </div>
         </main>
         <footer>
-          <span>MIT License | v{process.env.REACT_APP_VERSION}</span>
+          <span>MIT License | v{version}</span>
           <a href='https://github.com/chipto/regexly' target='_blank'>Github Repository</a>
         </footer>
       </div>
