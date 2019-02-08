@@ -10,7 +10,8 @@
     "moduleResolution": "node",
     "rootDir": "src",
     "suppressImplicitAnyIndexErrors": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true
   },
   "exclude": [
     "node_modules",
