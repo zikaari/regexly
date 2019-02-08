@@ -30,6 +30,8 @@ class Exec extends React.Component<IExecProps> {
     }
 
     safeExec(regex: RegExp, str: string) {
+        // create a virgin clone of original re object (without messing original)
+        regex = new RegExp(regex.source, regex.flags)
         const results = []
         let res = regex.exec(str)
         let indexFromLastExec = -10
