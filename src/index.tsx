@@ -14,7 +14,7 @@ ReactDOM.render(
 
 if (process.env.NODE_ENV === 'production' && process.env.REACT_APP_GA_ID !== '') {
   ReactGA.initialize(process.env.REACT_APP_GA_ID, {gaOptions: {
-    appId: 'io.chipto.regexly',
+    appId: 'org.js.regexly',
     appName: 'Regexly',
     appVersion: version || '0.0.0',
   } as any})
